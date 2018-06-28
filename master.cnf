@@ -3,7 +3,6 @@
 log-bin=mysql-bin
 server-id=1
 
-bind-address=0.0.0.0
 binlog-format=row
 
 character_set_server=utf8mb4
