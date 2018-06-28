@@ -1,0 +1,28 @@
+version: "2"
+services:
+
+  mysql-master:
+    container_name: mysql-master
+    image: mysql:5.7.21
+    volumes:
+      - ./master.cnf:/etc/mysql/conf.d/my.cnf
+      - ./master.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=mst
+      - MYSQL_DATABASE=msr
+      - MYSQL_USER=mst
+      - MYSQL_PASSWORD=mst
+    ports:
+      - "33061:3306"
+  mysql-slave:
+    container_name: mysql-slave
+    image: mysql:5.7.21
+    volumes:
+      - ./slave.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=slv
+      - MYSQL_DATABASE=msr
+      - MYSQL_USER=slv
+      - MYSQL_PASSWORD=slv
+    ports:
+      - "33062:3306"
